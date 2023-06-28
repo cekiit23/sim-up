@@ -21,3 +21,6 @@ Route::get('/', function () {
 Route::get('/index', [piutangController::class, 'index']);
 Route::get('/piutang/create', [piutangController::class, 'create']);
 Route::post('/piutang/store', [piutangController::class, 'store']);
+Route::get('/piutang/edit/{id}', [piutangController::class,'edit']);
+Route::put('/piutang/update/{id}', [piutangController::class,'update']);
+Route::delete('/piutang/remove/{id}', [piutangController::class,'remove']);

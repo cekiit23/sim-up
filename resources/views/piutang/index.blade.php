@@ -8,6 +8,7 @@
 </head>
 
 <body>
+    <a href="/piutang/create">Tambahkan Piutang</a>
     <table border="1">
         <tr>
             <td>No</td>
@@ -16,6 +17,7 @@
             <td>Tgl Pinjam</td>
             <td>Tgl Bayar</td>
             <td>Status</td>
+            <td>Aksi</td>
         </tr>
         <?php $no = 1;
         ?>
@@ -27,6 +29,13 @@
                 <td>{{ $loan->tgl_pinjam }}</td>
                 <td>{{ $loan->tgl_pengembalian }}</td>
                 <td>{{ $loan->status }}</td>
+                <td><a href="/piutang/edit/{{ $loan->id }}">Edit</a>
+                    <form action="/piutang/remove/{{ $loan->id }}" method="POST">
+                        @csrf
+                        @method('delete')
+                        <input type="submit" value="Delete">
+                    </form>
+                </td>
             </tr>
         @endforeach
     </table>

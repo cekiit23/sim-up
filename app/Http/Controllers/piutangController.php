@@ -29,4 +29,29 @@ class piutangController extends Controller
 
         return redirect('/index');
     }
+
+    public function edit($id)
+    {
+        $utangbyid = Piutang::find($id);
+
+        return view('piutang.edit', compact(['utangbyid']));
+    }
+
+    public function update($id, Request $req)
+    {
+        $piutang = Piutang::find($id);
+
+        $piutang->update($req->except('_method','_token','submit'));
+
+        return redirect('/index');
+    }
+
+    public function remove($id)
+    {
+        $piutang = Piutang::find($id);
+
+        $piutang->delete();
+
+        return redirect('/index');
+    }
 }
