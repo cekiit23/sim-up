@@ -14,11 +14,8 @@ use App\Http\Controllers\piutangController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
 
-Route::get('/index', [piutangController::class, 'index']);
+Route::get('/', [piutangController::class, 'index']);
 Route::get('/piutang/create', [piutangController::class, 'create']);
 Route::post('/piutang/store', [piutangController::class, 'store']);
 Route::get('/piutang/edit/{id}', [piutangController::class,'edit']);

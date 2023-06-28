@@ -1,37 +1,34 @@
-<!DOCTYPE html>
-<html lang="en">
+@extends('layouts.master')
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tambah Hutang</title>
-</head>
-
-<body>
-    <h2>Formulir Tambah Hutang</h2>
+@section('content')
+    <div class="container">
+        <h2>Formulir Tambah Hutang</h2>
     <form action="/piutang/store" method="POST">
         @csrf
-        <label for="nama_kreditur">Nama Kreditur</label>
-        <input type="text" name="nama_kreditur" id="nama_kreditur">
-        <br>
-        <label for="jumlah_hutang">Jumlah Hutang (Rp.)</label>
-        <input type="text" name="jumlah_hutang" id="jumlah_hutang">
-        <br>
-        <label for="tgl_pinjam">Tanggal Peminjaman</label>
-        <input type="date" name="tgl_pinjam" id="tgl_pinjam">
-        <br>
-        <label for="tgl_pengembalian">Tanggal Pengembalian</label>
-        <input type="date" name="tgl_pengembalian" id="tgl_pengembalian">
-        <br>
-        <label for="status">Status</label>
-        <select name="status" id="status">
-            <option value="Belum dibayar">Belum Dibayar</option>
-            <option value="Lunas">Lunas</option>
-            <option value="Ditunda">Ditunda</option>
-        </select>
-        <br>
-        <input type="submit" value="submit">
-    </form>
-</body>
+        <div class="mb-3">
+          <label for="nama_kreditur" class="form-label">Nama yang meminjamkan</label>
+          <input type="text" class="form-control" id="nama_kreditur" name="nama_kreditur">
+        </div>
+        <div class="mb-3">
+          <label for="jumlah_hutang" class="form-label">Jumlah Hutang</label>
+          <input type="text" class="form-control" id="jumlah_hutang" name="jumlah_hutang">
+        </div>
+        <div class="mb-3">
+          <label for="tgl_pinjam" class="form-label">Tanggal Pinjam</label>
+          <input type="date" class="form-control" id="tgl_pinjam" name="tgl_pinjam">
+        </div>
+        <div class="mb-3">
+          <label for="tgl_pengembalian" class="form-label">Tanggal Pengembalian</label>
+          <input type="date" class="form-control" id="tgl_pengembalian" name="tgl_pengembalian">
+        </div>
 
-</html>
+        <select class="form-select" aria-label="Default select example">
+            <option selected disabled>Pilih Status Pembayaran</option>
+            <option value="Lunas">Lunas</option>
+            <option value="Belum Lunas">Belum Bayar</option>
+          </select>
+          <br>
+        <button type="submit" class="btn btn-primary" value="submit">Submit</button>
+      </form>
+    </div>
+@endsection

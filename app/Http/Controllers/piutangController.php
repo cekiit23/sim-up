@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Piutang;
+use App\Models\TotalHutang;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 
@@ -13,7 +14,9 @@ class piutangController extends Controller
     {
         $loans = Piutang::all();
 
-        return view('piutang.index', compact(['loans']));
+        $total = TotalHutang::first();
+
+        return view('piutang.index', compact(['loans','total']));
     }
 
     public function create()
@@ -25,9 +28,17 @@ class piutangController extends Controller
     {
         $utang = $request->except(['_token', 'submit']);
 
+        $total = TotalHutang::first();
+
+        $total_hutang = $total->total_semua_hutang + $request->jumlah_hutang;
+
+        $total-> total_semua_hutang = $total_hutang;
+
+        $total->save();
+
         Piutang::create($utang);
 
-        return redirect('/index');
+        return redirect('/');
     }
 
     public function edit($id)
@@ -43,7 +54,7 @@ class piutangController extends Controller
 
         $piutang->update($req->except('_method','_token','submit'));
 
-        return redirect('/index');
+        return redirect('/');
     }
 
     public function remove($id)
@@ -52,6 +63,6 @@ class piutangController extends Controller
 
         $piutang->delete();
 
-        return redirect('/index');
+        return redirect('/');
     }
 }
