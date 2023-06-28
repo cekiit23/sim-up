@@ -54,6 +54,14 @@ class piutangController extends Controller
 
         $piutang->update($req->except('_method','_token','submit'));
 
+        $total = TotalHutang::first();
+
+        if($req->status == "Lunas")
+        {
+            $total->total_semua_hutang = $total->total_semua_hutang - $req->jumlah_hutang;
+            $total->save();
+        }
+
         return redirect('/');
     }
 

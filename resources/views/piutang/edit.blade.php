@@ -1,4 +1,4 @@
-@extends('layouts.main')
+@extends('layouts.master')
 <body>
     <h2>Formulir Edit Piutang</h2>
     <form action="/piutang/update/{{ $utangbyid->id }}" method="POST">
