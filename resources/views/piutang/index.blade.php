@@ -17,9 +17,9 @@
             <td>Tgl Bayar</td>
             <td>Status</td>
         </tr>
+        <?php $no = 1;
+        ?>
         @foreach ($loans as $loan)
-            <?php $no = 1;
-            ?>
             <tr>
                 <td>{{ $no++ }}</td>
                 <td>{{ $loan->nama_kreditur }}</td>

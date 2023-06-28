@@ -9,4 +9,5 @@ class Piutang extends Model
 {
     use HasFactory;
     protected $table = 'tb_piutang';
+    protected $guarded = [];
 }

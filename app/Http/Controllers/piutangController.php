@@ -18,6 +18,15 @@ class piutangController extends Controller
 
     public function create()
     {
-        return 'halaman ini adalah halaman untuk menambah hutang piutang kita sehingga kita tidak usah menulis dibuka teman - teman semua nya';
+        return view('piutang.create');
+    }
+
+    public function store(Request $request)
+    {
+        $utang = $request->except(['_token', 'submit']);
+
+        Piutang::create($utang);
+
+        return redirect('/index');
     }
 }

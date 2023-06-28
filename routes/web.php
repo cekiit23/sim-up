@@ -19,4 +19,5 @@ Route::get('/', function () {
 });
 
 Route::get('/index', [piutangController::class, 'index']);
-Route::get('/piutang/add', [piutangController::class, 'create']);
+Route::get('/piutang/create', [piutangController::class, 'create']);
+Route::post('/piutang/store', [piutangController::class, 'store']);
