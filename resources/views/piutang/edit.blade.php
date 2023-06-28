@@ -1,27 +1,36 @@
+
 @extends('layouts.master')
-<body>
-    <h2>Formulir Edit Piutang</h2>
-    <form action="/piutang/update/{{ $utangbyid->id }}" method="POST">
+
+@section('content')
+    <div class="container">
+        <h2>Formulir Pelunasan Hutang</h2>
+    <form action="/piutang/update/{{ $utang->id }}" method="POST">
         @method('put')
         @csrf
-        <label for="nama_kreditur">Nama Kreditur</label>
-        <input type="text" name="nama_kreditur" id="nama_kreditur" value="{{ $utangbyid->nama_kreditur }}">
-        <br>
-        <label for="jumlah_hutang">Jumlah Hutang (Rp.)</label>
-        <input type="text" name="jumlah_hutang" id="jumlah_hutang" value="{{ $utangbyid->jumlah_hutang }}">
-        <br>
-        <label for="tgl_pinjam">Tanggal Peminjaman</label>
-        <input type="date" name="tgl_pinjam" id="tgl_pinjam" value="{{ $utangbyid->tgl_pinjam }}">
-        <br>
-        <label for="tgl_pengembalian">Tanggal Pengembalian</label>
-        <input type="date" name="tgl_pengembalian" id="tgl_pengembalian" value="{{ $utangbyid->tgl_pengembalian }}">
-        <br>
-        <label for="status">Status</label>
-        <select name="status" id="status">
-            <option value="Belum dibayar" @if($utangbyid->status == "Belum Bayar")selected @endif>Belum Dibayar</option>
-            <option value="Lunas" @if($utangbyid->status == "Lunas") selected @endif>Lunas</option>
-            <option value="Ditunda" @if($utangbyid->status == "Ditunda") selected @endif>Ditunda</option>
-        </select>
-        <br>
-        <input type="submit" value="submit">
-    </form>
+        <div class="mb-3">
+          <label for="nama_kreditur" class="form-label">Nama yang meminjamkan</label>
+          <input type="text" class="form-control" id="nama_kreditur" name="nama_kreditur" value="{{ $utang->nama_kreditur }}" >
+        </div>
+        <div class="mb-3">
+          <label for="jumlah_hutang" class="form-label" >Jumlah Hutang</label>
+          <input type="text" class="form-control" id="jumlah_hutang" name="jumlah_hutang" value="{{ $utang->jumlah_hutang }}" >
+        </div>
+        <div class="mb-3">
+          <label for="tgl_pinjam" class="form-label" >Tanggal Pinjam</label>
+          <input type="date" class="form-control" id="tgl_pinjam" name="tgl_pinjam" value="{{ $utang->tgl_pinjam }}" >
+        </div>
+        <div class="mb-3">
+          <label for="tgl_pengembalian" class="form-label" >Tanggal Pengembalian</label>
+          <input type="date" class="form-control" id="tgl_pengembalian" name="tgl_pengembalian" value="{{ $utang->tgl_pengembalian }}" >
+        </div>
+
+        <select class="form-select" aria-label="Default select example" name="status">
+            <option>Pilih Status Pembayaran</option>
+            <option value="Lunas" @if($utang->status == 'Lunas') selected @endif>Lunas</option>
+            <option value="Belum Lunas" @if($utang->status == 'Belum dibayar') selected @endif>Belum Bayar</option>
+          </select>
+          <br>
+        <button type="submit" class="btn btn-primary" value="submit">Submit</button>
+      </form>
+    </div>
+@endsection

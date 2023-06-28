@@ -43,14 +43,15 @@ class piutangController extends Controller
 
     public function edit($id)
     {
-        $utangbyid = Piutang::find($id);
+        $utang = Piutang::find($id);
 
-        return view('piutang.edit', compact(['utangbyid']));
+        return view('piutang.edit', compact(['utang']));
     }
 
     public function update($id, Request $req)
     {
         $piutang = Piutang::find($id);
+
 
         $piutang->update($req->except('_method','_token','submit'));
 
@@ -68,6 +69,14 @@ class piutangController extends Controller
     public function remove($id)
     {
         $piutang = Piutang::find($id);
+
+        $total = TotalHutang::first();
+
+        $total_hutang_sekarang = $total->total_semua_hutang - $piutang->jumlah_hutang;
+
+        $total->total_semua_hutang = $total_hutang_sekarang;
+
+        $total->save();
 
         $piutang->delete();
 

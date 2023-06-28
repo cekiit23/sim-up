@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('tb_total_hutang', function (Blueprint $table) {
             $table->id();
-            $table->integer('total_semua_hutang');
+            $table->integer('total_semua_hutang')->default(0);
             $table->timestamps();
         });
     }

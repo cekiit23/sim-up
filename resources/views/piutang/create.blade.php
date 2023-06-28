@@ -23,9 +23,9 @@
         </div>
 
         <select class="form-select" aria-label="Default select example">
-            <option selected disabled>Pilih Status Pembayaran</option>
-            <option value="Lunas">Lunas</option>
-            <option value="Belum Lunas">Belum Bayar</option>
+            <option disabled>Pilih Status Pembayaran</option>
+            <option value="Lunas" disabled>Lunas</option>
+            <option value="Belum Lunas" selected>Belum Bayar</option>
           </select>
           <br>
         <button type="submit" class="btn btn-primary" value="submit">Submit</button>

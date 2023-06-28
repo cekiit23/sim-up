@@ -20,9 +20,14 @@
             </tr>
             <?php $no = 1;
             ?>
+           <tr>
+
+           </tr>
+
             @foreach ($loans as $loan)
 
                 <tr>
+
                     <td>{{ $no++ }}</td>
                     <td>{{ $loan->nama_kreditur }}</td>
                     <td>@currency($loan->jumlah_hutang)</td>
